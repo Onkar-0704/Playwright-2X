@@ -47,8 +47,8 @@ graph TB
             ch4["Ch 4: var / let / const & Hoisting ✅"]
             ch5["Ch 5: Literals (null, number, string, template) ✅"]
             ch6["Ch 6: Operators ✅"]
-            ch7["Ch 7: If / Else"]
-            ch8["Ch 8: Switch"]
+            ch7["Ch 7: If / Else ✅"]
+            ch8["Ch 8: Switch ✅"]
             ch9["Ch 9: Loops"]
             ch10["Ch 10: Arrays"]
             ch11["Ch 11: Functions & Strings"]
@@ -161,6 +161,22 @@ LearnPlaywrightBatch2x/
 │   ├── 45_Post_Increment.js            # post ++ — assign-then-increment
 │   ├── 46_IQ_INCREMENT_D.js            # Interview: value of a++
 │   └── 47_Advance_ID_.js               # 🔥 Pre/post mix in one expression (IQ trap)
+│
+├── chapter_07_If_else/                 ✅ If / Else — control flow basics
+│   ├── 48_IF_ESLE.js                   # Basic if / else with age check
+│   ├── 49_If_elseif_else.js            # Grade ladder with else-if
+│   ├── 50_REAL_IF_ELSE.js              # Nested if-else — login + role checks
+│   ├── 51_API_IF_ELSE.js               # API status code branching
+│   ├── 52_IQ_IF_ELSE.js                # Truthy vs falsy values
+│   ├── 53_IF_ELSE_real.js              # Logical operators + if-else (auth logic)
+│   ├── 54_IQ.js                        # One-line if without braces
+│   ├── 55_IE.js                        # Empty if block
+│   ├── 56_IQ_EVEN_ODD.js               # Even / odd with modulus
+│   ├── 57_Grade_Calc.js                # Grade calculator (A–F)
+│   └── 58_LEAP_YEAR.js                 # Leap year rules (% 4, % 100, % 400)
+│
+├── chapter_08_Switch_Statement/        ✅ Switch cases
+│   └── 59_Switch.js                    # Switch statement basics
 │
 └── README.md                           👋 You are here
 ```
@@ -1251,14 +1267,169 @@ console.log(c);          // 11
 
 ---
 
+## 📖 What's in Chapter 7 — If / Else (Available Now)
+
+### Files
+
+| File | Topic | What you'll learn |
+|------|-------|-------------------|
+| `48_IF_ESLE.js` | Basic if/else | Vote eligibility with `age > 18` |
+| `49_If_elseif_else.js` | Else-if ladder | Grade scoring (A → F) |
+| `50_REAL_IF_ELSE.js` | Nested if/else | Login check → role-based access (admin / editor / viewer) |
+| `51_API_IF_ELSE.js` | API branching | Status-code-driven console messages |
+| `52_IQ_IF_ELSE.js` | Truthy vs falsy | Which values count as `true` / `false` in an `if` |
+| `53_IF_ELSE_real.js` | Logical + if/else | Combine `&&` / `\|\|` with nested conditions (auth logic) |
+| `54_IQ.js` | One-line if | `if` without braces — when it works |
+| `55_IE.js` | Empty if | A bare `if (true) { }` block |
+| `56_IQ_EVEN_ODD.js` | Even / odd | `% 2 === 0` check |
+| `57_Grade_Calc.js` | Grade calculator | Clean else-if ladder for marks → A–F |
+| `58_LEAP_YEAR.js` | Leap year | `% 4 && !% 100 \|\| % 400` rule |
+
+### Key Concepts
+
+```mermaid
+mindmap
+  root((Chapter 7 — If / Else))
+    Basic
+      if
+      else
+    Ladder
+      if ... else if ... else
+    Nested
+      if inside if
+    Truthy
+      non-zero numbers
+      non-empty strings
+      objects / arrays
+    Falsy
+      0
+      ""
+      null
+      undefined
+      NaN
+    Logical combo
+      &&  both true
+      ||  either true
+```
+
+### Run them
+
+```bash
+node chapter_07_If_else/48_IF_ESLE.js           # → "You are allowed to vote!"
+node chapter_07_If_else/49_If_elseif_else.js    # → grade for score = 78
+node chapter_07_If_else/50_REAL_IF_ELSE.js      # → role-based welcome message
+node chapter_07_If_else/51_API_IF_ELSE.js       # → API status messages
+node chapter_07_If_else/52_IQ_IF_ELSE.js        # → truthy / falsy surprise
+node chapter_07_If_else/53_IF_ELSE_real.js     # → "Allowed to enter"
+node chapter_07_If_else/56_IQ_EVEN_ODD.js      # → "7 is Odd"
+node chapter_07_If_else/57_Grade_Calc.js       # → "Grade: B"
+node chapter_07_If_else/58_LEAP_YEAR.js        # → "2024 is a Leap Year"
+```
+
+---
+
+### 48 — Basic If / Else
+
+**Concept:** An `if` statement evaluates a condition. If the condition is *truthy*, the first block runs; otherwise the `else` block runs. It's the simplest form of control flow.
+
+**Why:** Every program needs decisions — "is the user logged in?", "is the API 200?", "is the price > budget?". If/else is the first tool for that.
+
+```js
+// 48_IF_ESLE.js
+let age = 20;
+if (age > 18) {
+    console.log("You are allowed to vote!");
+} else {
+    console.log("You are not allowed to vote!");
+}
+```
+
+---
+
+### 52 — Truthy vs Falsy
+
+**Concept:** In a boolean context (`if`, `while`, `&&`, `||`), JS coerces values to `true` or `false`. "Falsy" values are `0`, `""`, `null`, `undefined`, `NaN`, and `false`. Everything else is "truthy".
+
+**Why:** Debugging "why didn't my if-block run?" usually comes down to a falsy value you didn't expect — especially `0` or `""`.
+
+```js
+// 52_IQ_IF_ELSE.js
+if ("hello") console.log("String is truthy");   // prints
+if (42)      console.log("Number is truthy");   // prints
+if ({})      console.log("Empty object is truthy!"); // prints
+if ([])      console.log("Empty array is truthy!");  // prints
+
+if ("")      console.log("Won't print");          // "" is falsy
+if (0)       console.log("Won't print");          // 0 is falsy
+if (null)   console.log("Won't print");          // null is falsy
+```
+
+| Value | Truthy? |
+|-------|:-------:|
+| `"hello"` | ✅ |
+| `42` | ✅ |
+| `-1` | ✅ |
+| `0` | ❌ |
+| `""` | ❌ |
+| `" "` | ✅ |
+| `null` | ❌ |
+| `undefined` | ❌ |
+| `NaN` | ❌ |
+| `{}` | ✅ |
+| `[]` | ✅ |
+
+---
+
+### 58 — Leap Year
+
+**Concept:** A year is a leap year if it is divisible by 4 **and not** divisible by 100, **or** it is divisible by 400.
+
+**Why:** Classic interview question that tests understanding of compound boolean logic and operator precedence.
+
+```js
+// 58_LEAP_YEAR.js
+let year = 2024;
+if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    console.log(year + " is a Leap Year");
+} else {
+    console.log(year + " is NOT a Leap Year");
+}
+```
+
+---
+
+## 📖 What's in Chapter 8 — Switch Statement (Available Now)
+
+### Files
+
+| File | Topic | What you'll learn |
+|------|-------|-------------------|
+| `59_Switch.js` | Switch basics | `switch (expr)` with `case` and `default` |
+
+### Key Concepts
+
+```mermaid
+mindmap
+  root((Chapter 8 — Switch))
+    switch
+      expression
+    case
+      value match
+      break to exit
+    default
+      fallback
+```
+
+---
+
 ## 🔭 What's Coming Next
 
 ```mermaid
 graph TD
-    subgraph next["Next Up — Control Flow"]
-        N1[Ch 7: If / Else Statements] --> N2[Ch 8: Switch Cases]
-        N2 --> N3[Ch 9: Loops — for, while, do-while]
-        N3 --> N4[Ch 10: Arrays & Functions]
+    subgraph next["Next Up — Data Structures & Async"]
+        N1[Ch 9: Loops — for, while, do-while] --> N2[Ch 10: Arrays]
+        N2 --> N3[Ch 11: Functions & Strings]
+        N3 --> N4[Ch 12: Objects]
     end
 
     style next fill:#fff3e0,stroke:#e65100
@@ -1269,6 +1440,8 @@ graph TD
 - ✅ Chapter 5 — **Literals**: null/undefined, every number form, strings, template literals (files `22`–`29`)
 - ✅ Chapter 6 — **Operators (Part 1)**: arithmetic, comparison (`==` vs `===`), confusing-comparisons reference, logical, string concat (files `30`–`40`)
 - ✅ Chapter 6 — **Operators (Part 2)**: ternary `? :`, `typeof`, `++`/`--` pre/post, nullish `??`, mixed-increment IQ trap (files `41`–`47`)
+- ✅ Chapter 7 — **If / Else**: basic if/else, else-if ladder, nested conditions, truthy/falsy, logical operators, IQ problems (files `48`–`58`)
+- ✅ Chapter 8 — **Switch Statement**: switch case basics (file `59`)
 
 ---
 
