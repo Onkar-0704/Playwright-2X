@@ -68,3 +68,17 @@ let feel = (temp >= 40) ? "Very Hot" :
         (temp >= 20) ? "Warm" :
             (temp >= 10) ? "Cool" : "Cold";
 console.log("7. Temperature:", temp, "| Feel:", feel);
+
+
+//Maximum number b/n 2 numbers using ternary operator
+let num1 = 10;
+let num2 = 20;
+let max = num1 > num2 ? num1 : num2;
+console.log("Maximum:", max);
+
+//maximum number b/n 3 numbers using ternary operator
+let x = 15;
+let y = 25;
+let z = 35;
+let maxOfThree = x > y ? (x > z ? x : z) : (y > z ? y : z);
+console.log("Maximum of three:", maxOfThree);

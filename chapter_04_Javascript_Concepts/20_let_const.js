@@ -6,5 +6,5 @@ console.log("Hei");
 console.log("Hei");
 
 const c = "pramod;"
-
+console.log(c);
 

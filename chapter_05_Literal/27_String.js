@@ -1,6 +1,8 @@
 // Single quotes
 let single = 'Hello World';
+console.log(typeof single);
 let withDouble = 'She said "hi"';
+console.log(withDouble);
 
 // Double quotes
 let double = "Hello World";

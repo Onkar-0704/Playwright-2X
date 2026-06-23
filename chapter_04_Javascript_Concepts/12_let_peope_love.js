@@ -19,7 +19,7 @@ if (testStatus === "pending") {
     console.log("Inside block:", executionTime);   // 1200
 }
 
-console.log(executionTime); // ReferenceError: executionTime is not defined
+//console.log(executionTime); // ReferenceError: executionTime is not defined
 
 // {} - Block 
 // if(){} 
@@ -32,4 +32,6 @@ console.log(executionTime); // ReferenceError: executionTime is not defined
 
 
 let name = "pending";
+console.log(name)
 name = "done";
+console.log(name);

@@ -19,5 +19,6 @@ function printHello() {
 printHello();
 
 var a = 50;
+console.log(a);
 
 // var == trump, flipper, dual faced, no trust worthy
